@@ -1,0 +1,15 @@
+
+{% extends 'home.html' %}
+{% block apps %}
+    <form action="register" method="post">
+        {% csrf_token %}
+        <input type="text" name="first_name" placeholder="First Name" style="margin-left: auto; margin-right: auto;"><br>
+        <input type="text" name="last_name" placeholder="Last Name" style="margin-left: auto; margin-right: auto;"><br>
+        <input type="email" name="email" placeholder="Email" style="margin-left: auto; margin-right: auto;"><br>
+        <input type="username" name="username" placeholder="username" style="margin-left: auto; margin-right: auto;"><br>
+        <input type="password" name="password1" placeholder="Password" style="margin-left: auto; margin-right: auto;"><br>
+        <input type="password" name="password2" placeholder="Confirm Password" style='margin-left: auto; margin-right: auto;'><br><br><br>
+        <input type="submit" class="Submit" name="RegisterSubmit"
+               id="RegisterSubmit" value="Register" style="margin-left: auto; margin-right: auto;"/>
+    </form>
+{% endblock %}

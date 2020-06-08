@@ -1,0 +1,502 @@
+* {
+/*    background-color: #E6E6E6;*/
+    font-family: 'Nunito', sans-serif;
+}
+
+#Icon {
+  border-radius: 00%;
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+          transition:         transform .5s ease-in-out;
+}
+#Icon:hover {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+#HomePageHeaderBox {
+/*    display: inline-block;*/
+/*    position: fixed;*/
+    top: 8;
+    left: 8;
+/*    top: -1080px;*/
+    height: 150px;
+    width: 100%;
+    color: #454343;
+    background-color: transparent;
+/*    opacity: 0.6;*/
+/*    padding: 3px;*/
+/*    border: 2px solid #454343;*/
+    border-radius: 3px;
+    z-index: 5;
+}
+
+#HomePageHeader {
+    font-size: 60px;
+    position: relative;
+    top: -135px;
+    left: 150px;
+    width: 400px;
+    background-color: transparent;
+    padding: 3px;
+/*    border: 2px solid #454343;*/
+    border-radius: 3px;
+}
+
+#PageHeaderBox {
+    position: relative;
+    float: left;
+}
+
+#PageHeader {
+    font-size: 40px;
+    position: relative;
+    background-color: transparent;
+    bottom: 100;
+    left: 50;
+}
+
+.Submit {
+    background-color: #454343; /*#fcb040;*/
+    height: 50px;
+    font-size: 30px;
+    width: auto;
+    position: relative;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+}
+
+.Submit:hover {
+    background-color: #fcb040;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+}
+
+a {
+    color: #454343;
+    font-size: 24;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#Menu {
+    height: 50px;
+    width: 500px;
+    position: absolute;
+    top: 50;
+    left: 600;
+    background-color: transparent;
+    color: #e55934;
+    font-size: 30px;
+}
+
+.MenuLink {
+    display: inline-block;
+    background-color: transparent;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    color: #454343;
+    margin-left: auto;
+    padding: 3px;
+    border: 1px solid #454343;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.MenuLink:hover{
+    background-color: #F7F7F7; /*#454343; #c0c0c0;*/
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+}
+
+.AppLinkBox {
+    display: block;
+    position: relative;
+    border: 1px solid #454343;
+    border-radius: 3px;
+    padding: 3px;
+    margin-right: 50px;
+    background-color: #454343;
+    -webkit-transition: opacity 0.5s;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.AppLinkBox:hover {
+    opacity: 1.0;
+    -webkit-transition: opacity 0.5s;
+}
+
+.AppLink {
+    font-size: 40px;
+    color: white;
+    z-index: 0;
+}
+
+#DBContainer {
+    position: absolute;
+    height: 200px;
+    width: 1000px;
+    padding: 10px;
+    top: 250px;
+    left: 50px;
+    background-color: transparent;
+}
+
+#AppContainer {
+    position: absolute;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    top: 300px;
+    left: 350px;
+    background-color: transparent;
+}
+
+.ContainerLabel {
+    font-size:30px;
+    color: #454343;
+}
+
+#DBLabel {
+    position: absolute;
+    top: 150px;
+    left: 60px;
+}
+
+#AppLabel {
+    position: absolute;
+    top: 150px;
+    left: 360px;
+}
+
+#top-background {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+#LoginSubmit {
+    left: -100px;
+}
+
+#RegisterSubmit {
+    top: -50px;
+    left: 90px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: block;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    color: white;
+    opacity: 0.99;
+    border: none;
+    border-radius: 3px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #454343;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: none;
+    border-radius: 23px;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fcb040;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    height: 500px;
+/*    width: 100%;*/
+    overflow: hidden;
+    background: transparent;
+}
+.video-container .poster img {
+    width: 100%;
+    top: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+    background-color: #454343;
+}
+
+/* Float Shadow */
+.hvr-float-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  margin-left: auto;
+  padding: 3px;
+  border: None;
+  border-radius: 3px;
+  z-index: 10;
+}
+.hvr-float-shadow:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+.hvr-float-shadow:hover, .hvr-float-shadow:focus, .hvr-float-shadow:active {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+.hvr-float-shadow:hover:before, .hvr-float-shadow:focus:before, .hvr-float-shadow:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+.AppLinkBox {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  position: relative;
+  border: 1px solid #454343;
+  border-radius: 3px;
+  padding: 3px;
+  margin-right: 50px;
+  background-color: #454343;
+  z-index: 0;
+}
+.AppLinkBox:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+.AppLinkBox:hover, .hvr-float-shadow:focus, .hvr-float-shadow:active {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+.AppLinkBox:hover:before, .hvr-float-shadow:focus:before, .hvr-float-shadow:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+.container 		{
+  font-family:'Roboto';
+  top: 50%;
+  width:600px;
+  margin:30px auto 0;
+  display:block;
+  background:#FFF;
+  padding:10px 50px 50px;
+  position: relative;
+  top: 0%;
+  left: 0%;
+  text-align: center;
+}
+
+/* form starting stylings ------------------------------- */
+.group 			  {
+  position:relative;
+  margin-bottom:45px;
+  margin-left: auto;
+  margin-right: auto;
+   font-family: Lato;
+}
+
+option {
+  font-family: Lato;
+}
+
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#fcb040;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:105px;
+  top:-10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#fcb040;
+} */
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px;
+  width:0;
+  bottom:1px;
+  position:absolute;
+  background:#fcb040;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%;
+  width:100px;
+  top:25%;
+  left:150px;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#fcb040; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#fcb040; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#fcb040; }
+  to 	{ width:0; background:transparent; }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 50000s ease-in-out 0s;
+}

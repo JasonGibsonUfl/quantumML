@@ -1,0 +1,47 @@
+{% load static %}
+
+<head>
+    <title>About</title>
+    <link rel="icon" href="{% static 'Images/Black_Icon.png' %}" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/homestyle.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <div id="HomePageHeaderBox">
+        <a href="/">
+            <img src="{% static "Images/Icon.png" %}" id="Icon" style="display: inline; width: 102; height: 115; position: relative; top: 2px; left: 42px;"/>
+        </a>
+        <h1 id="HomePageHeader">About</h1>
+        <div id="Menu">
+            <a class="hvr-float-shadow" href="/">Home</a>
+            <a class="hvr-float-shadow" href="/about">About</a>
+            <a class="hvr-float-shadow" href="/docs">Docs</a>
+            <a class="hvr-float-shadow" href="/contact">Contact</a>
+            <a class="hvr-float-shadow" href="/api" id="Api">API</a>
+            {% if is_signed_in %}
+              <a class="hvr-float-shadow" href="/logout" id="SignOut">Sign Out</a>
+            {% else %}
+              <a class="hvr-float-shadow" href="/login" id="SignOut">Sign In</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <p style="font-size: 24px; position: relative; top: 0px; left: 5%; width:90%;">
+        This site is hosted and managed by the Hennig group at the University of Florida. All content is available for public use. If you use our data in your research, we ask that you cite the appropriate references available in the Docs tab.
+    </p>
+    <p style="font-size: 24px; position: relative; top: 0px; left: 5%; width:90%;">
+        Contributors:
+        <ul style="font-size: 24px; position: relative; top: 0px; left: 50px; margin-right: 50px;">
+            <li>Michael Ashton, University of Florida</li>
+            <li>Joshua Gabriel, University of Florida</li>
+            <li>Jason Gibson, University of Florida</li>
+            <li>Richard Hennig, University of Florida</li>
+            <li>Susan Sinnott, Pennsylvania State University</li>
+            <li>Kiran Mathew, Lawrence Berkeley National Lab</li>
+        </ul>
+    </p>
+
+
+</body>

@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block apps %}
+
+    <div class="container">
+       <form method="post">{% csrf_token %}
+        <div class="group">
+          <input onclick="this.setSelectionRange(0, this.value.length)" style="margin-left: auto; margin-right: auto;" type="text" name="email" id="email" required>
+          <span style="margin-left: auto; margin-right: auto;" class="bar"></span>
+          <label>Email</label>
+        </div>
+
+        <div class="group">
+          <input onclick="this.setSelectionRange(0, this.value.length)" style="margin-left: auto; margin-right: auto;" type="password" name="password" id="password" required>
+          <span style="margin-left: auto; margin-right: auto;" class="bar"></span>
+          <label>Password</label>
+        </div>
+
+        <input type="submit" name="submit" class="Submit" value="Sign In" style="font-family: Lato; position: relative; top: 50px; left: 40%; width: 20%;"/>
+
+       </form>
+      </div>
+
+      <p style="text-align: center; color: red; animation: fadein 1s;
+        -moz-animation: fadein 1s; /* Firefox */
+        -webkit-animation: fadein 1s; /* Safari and Chrome */
+        -o-animation: fadein 1s; /* Opera */">{{ alert }}</p>
+
+      <p style="text-align: center;">Don't have an account yet? <a href="/register">Create one</a>
+
+{% endblock %}

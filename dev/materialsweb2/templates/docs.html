@@ -1,0 +1,69 @@
+{% load static %}
+
+<head>
+    <title>Docs</title>
+    <link rel="icon" href="{% static 'Images/Black_Icon.png' %}" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/homestyle.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <div id="HomePageHeaderBox">
+        <a href="/">
+            <img src="{% static "Images/Icon.png" %}" id="Icon" style="display: inline; width: 102; height: 115; position: relative; top: 2px; left: 42px;"/>
+        </a>
+        <h1 id="HomePageHeader">Docs</h1>
+        <div id="Menu">
+            <a class="hvr-float-shadow" href="/">Home</a>
+            <a class="hvr-float-shadow" href="/about">About</a>
+            <a class="hvr-float-shadow" href="/docs">Docs</a>
+            <a class="hvr-float-shadow" href="/contact">Contact</a>
+            <a class="hvr-float-shadow" href="/api" id="Api">API</a>
+            {% if is_signed_in %}
+              <a class="hvr-float-shadow" href="/logout" id="SignOut">Sign Out</a>
+            {% else %}
+              <a class="hvr-float-shadow" href="/login" id="SignOut">Sign In</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <p style="position: relative; top: 0px; left: 5%; width:90%;">
+    <a style="font-size:32; color: #fcb040" target="_blank" href="http://www.sciencedirect.com/science/article/pii/S0927025616302440">MPInterfaces</a>
+    </p>
+    <p style="font-size: 20px; position: relative; top: 0px; left: 5%; width:90%;">
+	Mathew, K., Singh A. K., Gabriel, J. J., Choudhary, K., Sinnott, S. B., Davydov, F. T., & Hennig, R. G. Computational Materials Science 122 (2016)
+    </p>
+    <p style="font-size:16; position: relative; left: 5%; top: 0px; width: 90%">
+        A Materials Project based open-source Python tool, MPInterfaces, has been developed to automate the high-throughput computational screening and study of interfacial systems. The framework encompasses creation and manipulation of interface structures for solid/solid hetero-structures, solid/implicit solvents systems, nanoparticle/ligands systems; and the creation of simple system-agnostic workflows for in depth computational analysis using density-functional theory or empirical energy models. The package leverages existing open-source high-throughput tools and extends their capabilities towards the understanding of interfacial systems. We describe the various algorithms and methods implemented in the package. Using several test cases, we demonstrate how the package enables high-throughput computational screening of advanced materials, directly contributing to the Materials Genome Initiative (MGI), which aims to accelerate the discovery, development, and deployment of new materials.
+    </p>
+    <p style="position: relative; left: 5%; top: 0px">
+    <a style="font-size:32; color: #fcb040" target="_blank" href="http://link.aps.org/doi/10.1103/PhysRevB.94.054116">M<sub>2</sub>AX phases</a>
+    </p>
+    <p style="font-size:20; position: relative; left: 5%; top: 0px; width: 90%;">
+        Ashton, M., Hennig, R. G., Broderick, S. R., Rajan, K., & Sinnott, S. B. Physical Review B 94, 054116 (2016)
+    </p>
+    <p style="font-size:16; position: relative; left: 5%; top: 0px; width: 90%;">
+        The family of layered Mn+1AXn compounds provides a large class of materials with applications ranging from magnets to high-temperature coatings to nuclear cladding. In this work, we employ a density-functional-theory-based discovery approach to identify a large number of thermodynamically stable Mn+1AXn compounds, where n=1, M=Sc, Ti, V, Cr, Zr, Nb, Mo, Hf, Ta; A=Al, Si, P, S, Ga, Ge, As, Cd, In, Sn, Tl, Pb; and X=C, N. We calculate the formation energy for 216 pure M2AX compounds and 10 314 solid solutions, (MM′)2(AA′)(XX′), relative to their competing phases. We find that the 49 experimentally known M2AX phases exhibit formation energies of less than 30 meV/atom. Among the 10 530 compositions considered, 3140 exhibit formation energies below 30 meV/atom, most of which have yet to be experimentally synthesized. A significant subset of 301 compositions exhibits strong exothermic stability in excess of 100 meV/atom, indicating favorable synthesis conditions. We identify empirical design rules for stable M2AX compounds. Among the metastable M2AX compounds are two Cr-based compounds with ferromagnetic ordering and expected Curie temperatures around 75 K. These results can serve as a map for the experimental design and synthesis of different M2AX compounds.
+    <p style="position: relative; left: 5%; top: 0px; width: 90%">
+    <a style="font-size:32; color: #fcb040" target="_blank" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.118.106101">Topology-Scaling Algorithm for Bonded Networks</a>
+    </p>
+    <p style="font-size:20; position: relative; left: 5%; top: 0px; width: 90%;">
+        Ashton, M., Paul, J. Sinnott, S. B., & Hennig, R. G. Physical Review Letters 118.10 (2017): 106101
+    </p>
+    <p style="font-size:16; position: relative; left: 5%; top: 0px; width: 90%;">
+        The Materials Project crystal structure database has been searched for materials possessing layered motifs in their crystal structures using a topology-scaling algorithm. The algorithm identifies and measures the sizes of bonded atomic clusters in a structure's unit cell, and determines their scaling with cell size. The search yielded 826 stable layered materials, which are considered as candidates for the formation of two-dimensional monolayers via exfoliation. Density-functional theory calculates the exfoliation energy of each material and 681 monolayers are found to exhibit exfoliation energies below those of certain already-extant two-dimensional materials, indicating the possibility of exfoliating them from bulk phases. The crystal structures of these two-dimensional materials provide templates for future theoretical searches of stable two-dimensional materials. The optimized structures and other data for all 826 monolayers are provided at https://materialsweb.org.
+    </p>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85193239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>

@@ -1,0 +1,98 @@
+{% load static %}
+
+<head>
+    <title>materialsweb</title>
+    <link rel="icon" href="{% static 'Images/Black_Icon.png' %}" sizes="16x16">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8"/>
+    <meta name="description" content="An online repository of electronic structure data for 2D and bulk layered materials"/>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta name="google-site-verification" content="SBScCrEfGtKxeXsL5FNkENAr08afbfdwDszHH9iJo_4" />
+    <meta name="google-signin-client_id" content="788957396257-ep109gm4v4hg6qvtv8nqj7gqf4mirduh.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS//homestyle.css' %}" />
+</head>
+
+<body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static 'parallax.js' %}"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <div style="position: relative; top: 0px; left: 0px; background-color: black; opacity: 0.9; width: 100%;"></div>
+
+  <div id="TopBar" style="background-color: white; position: absolute; top: 0; height: 125px; width: 100%; opacity: 0.9;"></div>
+
+    <div id="HomePageHeaderBox">
+        <div id="Menu">
+            <a class="hvr-float-shadow" href="/" id="Home">Home</a>
+            <a class="hvr-float-shadow" href="/about" id="About">About</a>
+            <a class="hvr-float-shadow" href="/docs" id="Docs">Docs</a>
+            <a class="hvr-float-shadow" href="/contact" id="Contact">Contact</a>
+            <a class="hvr-float-shadow" href="/api" id="Api">API</a>
+            {% if is_signed_in %}
+              <a class="hvr-float-shadow" href="/accounts/signout" id="SignOut">Sign Out</a>
+            {% else %}
+              <a class="hvr-float-shadow" href="/accounts/login" id="SignOut">Sign In</a>
+              <a class="hvr-float-shadow" href="/accounts/register" id="Register">Register</a>
+
+            {% endif %}
+        </div>
+    </div>
+
+  <img src="{% static 'Images/Logo.png' %}" width="295px" height="115px" style="display: inline; overflow: hidden; position: absolute; top: 10px; left: 50px; background-color: transparent"/>
+{%  block apps  %}
+    <div id="DBContainer">
+
+        <p>
+            <div class="AppLinkBox"><a class="AppLink" href="workflow" id="Workflow">VASP Workflow Builder</a></div>
+            <div class="AppLinkBox"><a class="AppLink" href="characterization" id="Characterization">Structure Characterization</a></div>
+        </p>
+        <p>
+            <div class="AppLinkBox"><a class="AppLink" href="database" id="BulkMaterials">Database</a></div>
+            <div class="AppLinkBox"><a class="AppLink" href="list_view" id="li">Lit View</a></div>
+            <div class="AppLinkBox"><a class="AppLink" href="gasp" id="GASP">GASP</a></div>
+        </p>
+
+    </div>
+          {% if is_signed_in %}
+            <form>{% csrf_token %}
+                <input type="text" name=nMat2D value="{{ mat2d }}" readonly style="display: inline-block; font-size: 40; background-color: transparent; color: black; width: 135; position: absolute; left: 358px; top: 413px; text-align: left; border: none;">
+
+                <input type="text" name=nMaxPhases value="{{ MAX_phases }}" readonly style="display: inline-block; font-size: 40; background-color: transparent; color: black; width: 135; position: absolute; left: 50px; top: 413px; text-align: left; border: none;">
+            </form>
+
+            <p style="position: absolute; top: 400px; left: 497px; font-size: 30px; color: black; width: 80px; background-color: transparent">Entries</p>
+            <p style="position: absolute; top: 400px; left: 190px; font-size: 30px; color: black; width: 80px; background-color: transparent">Entries</p>
+          {% endif %}
+{%  endblock  %}
+
+    <div id="UnderVideo" style="background-color: transparent; position: absolute; z-index: -1; top: 10; height: 930px; width: 100%;" data-parallax="scroll" data-image-src="{% static 'Images/Icon.svg' %}"></div>
+
+    <div id="InfoBlock" style="background-color: white; position: absolute; top: 640; height: 300px; width: 100%; opacity: 0.9;">
+      <p style="position: relative; width: 800px; left: 100px; top: 0px; font-size: 32px; color: black;"> Browse our databases of structural, electronic,</br>and thermodynamic data for 2D/3D materials</p>
+      <p style="position: relative; width: 800px; left: 100px; top: 0px; font-size: 32px; color: black;"> Write your own python workflows for using</br>VASP to characterize your own 2D</br>materials</p>
+    </div>
+    <img src="{% static 'Images/db_glyphicon.png'%}" style="position: absolute; top: 680px; left: 50px; height: 50px;"></img>
+    <img src="{% static 'Images/coding_glyphicon.png'%}" style="position: absolute; top: 790px; left: 50px; height: 45px;"></img>
+
+    <div id="BottomBlock" style="background-color: #454343; color: white; position: absolute; top: 940; height: 300px; width: 100%;">
+      <p style="position: relative; top: 100px; left: 50px; font-size: 32px; width: 700px;"> powered by <a href="https://github.com/henniggroup/MPInterfaces" style="font-size: 32px; color: #fcb040;">MPInterfaces</a> and <a href="https://github.com/materialsproject/pymatgen" style="font-size: 32px; color: #fcb040;">Pymatgen</a></p>
+    </div>
+
+    {% if dbs_loaded %}
+        <p style="display: None">DBs Loaded</p>
+    {% endif %}
+
+    <script>
+
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85193239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>

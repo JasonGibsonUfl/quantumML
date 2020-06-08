@@ -1,0 +1,76 @@
+# allocation1:
+    #   host: hostname
+    #   key: key needed for identifying allocation
+    #   users:
+    #       - user1
+    #       - user2
+    # allocation2: ...
+    
+b1004:
+  host: quest
+  key: b1004
+  users:
+  - jsm1683
+  - jhc585
+babbage:
+  host: babbage
+  key: ''
+  users: []
+byrd:
+  host: byrd
+  key: ''
+  users: []
+josquin:
+  host: josquin
+  key: ''
+  users: []
+p30140:
+  host: quest
+  key: p30140
+  users: []
+p30239:
+  host: quest
+  key: p30239
+  users:
+  - jhc585
+p30436:
+  host: quest
+  key: p30436
+  users:
+  - kpq6413
+p30475:
+  host: quest
+  key: p30475
+  users:
+  - sdg0032
+p30563:
+  host: quest
+  key: p30563
+  users:
+  - jhc585
+p30578:
+  host: quest
+  key: p30578
+  users: []
+p30649:
+  host: quest
+  key: p30649
+  users:
+  - bbh2050
+p30919:
+  host: quest
+  key: ''
+  users:
+  - alz6518
+palestrina:
+  host: palestrina
+  key: ''
+  users: []
+stampede:
+  host: stampede
+  key: ''
+  users: []
+victoria:
+  host: victoria
+  key: ''
+  users: []

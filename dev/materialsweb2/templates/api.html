@@ -1,0 +1,55 @@
+{% load static %}
+
+<head>
+    <title>API</title>
+    <link rel="icon" href="{% static 'Images/Black_Icon.png' %}" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/homestyle.css' %}" />
+    <script src="https://use.fontawesome.com/e5e055d24a.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="HomePageHeaderBox">
+        <a href="/">
+            <img src="{% static "Images/Icon.png" %}" id="Icon" style="display: inline; width: 102; height: 115; position: relative; top: 2px; left: 42px;"/>
+        </a>
+        <h1 id="HomePageHeader">API</h1>
+        <div id="Menu">
+            <a class="hvr-float-shadow" href="/">Home</a>
+            <a class="hvr-float-shadow" href="/about">About</a>
+            <a class="hvr-float-shadow" href="/docs">Docs</a>
+            <a class="hvr-float-shadow" href="/contact">Contact</a>
+            <a class="hvr-float-shadow" href="/api" id="Api">API</a>
+            {% if is_signed_in %}
+              <a class="hvr-float-shadow" href="/logout" id="SignOut">Sign Out</a>
+            {% else %}
+              <a class="hvr-float-shadow" href="/login" id="SignOut">Sign In</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <p style="font-size: 24px; position: relative; top: 0px; left: 5%; width:90%;">
+        The MaterialsWeb API is built on the <a style="font-size:24; color: #fcb040" href="https://www.materialsproject.org/open">Materials API (MAPI)</a>,
+        and as a result can be interacted with in mostly similar ways to those described in the
+        <a style="font-size:24; color: #fcb040" href="https://www.materialsproject.org/docs/api">MAPI documentation</a>. For convenience,
+        <a style="font-size:24; color: #fcb040" href="https://github.com/henniggroup/mpinterfaces">MPInterfaces</a> has built-in classes
+        and tools to perform queries via the API in Python.
+    </p>
+    <p style="font-size: 24px; position: relative; top: 50px; left: 5%; width:90%; text-align: center;">
+        <code style="font-family: Inconsolata; color: gray">{{ api_key }}</code>
+    </p>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85193239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>

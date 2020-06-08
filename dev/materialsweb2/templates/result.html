@@ -1,0 +1,196 @@
+{% load static %}
+{% static "" as baseUrl %}
+
+<head>
+    <title>{{ redform }} ({{ spacegroupsymbol }})</title>
+    <link rel="icon" href="{% static 'Images/Black_Icon.png' %}" sizes="16x16">
+    <link rel="stylesheet" type="text/css"
+        href="{% static 'CSS/dbstyle.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300'
+        rel='stylesheet' type='text/css'>/
+</head>
+
+<body onload="displayResults();">
+  <div id="TopBar" style="background-color: white; position: absolute; top: 0; height: 125px; width: 100%; opacity: 0.9;"></div>
+
+    <div id="HomePageHeaderBox">
+        <a href="/">
+            <img src="{% static 'Images/Icon.png' %}" id="Icon" style="display: inline; width: 102; height: 115; position: relative; top: 2px; left: 42px;"/>
+        </a>
+        <h1 id="HomePageHeader">Bulk Materials</h1>
+        <div id="Menu">
+            <a class="hvr-float-shadow" href="/">Home</a>
+            <a class="hvr-float-shadow" href="/about">About</a>
+            <a class="hvr-float-shadow" href="/docs">Docs</a>
+            <a class="hvr-float-shadow" href="/contact">Contact</a>
+            <a class="hvr-float-shadow" href="/api" id="Api">API</a>
+            {% if is_signed_in %}
+              <a class="hvr-float-shadow" href="/logout" id="SignOut">Sign Out</a>
+            {% else %}
+              <a class="hvr-float-shadow" href="/login" id="SignOut">Sign In</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'javascript/3Dmol/jquery.js' %}">
+    </script>
+    <script>
+    function displayResults() {
+        var error_msg = "{{ err_msg }}";
+        if (error_msg) {
+            var structureProperties = error_msg;
+        } else {
+            var formula = "{{  entry.composition.formula  }}";
+            var alatpar = "{{ a }}";
+            var blatpar = "{{ b }}";
+            var spacegroup = "{{ structure.spacegroup.hm }}";
+            var bandgap = "{{ band_gap }}";
+            var direct = "{{ direct }}"
+            var theory_level = "{{ theory_level }}";
+            var formation_energy = "{{ formation_energy }}";
+            var structureProperties = "Formula: " + formula + "<br />" + alatpar + "<br />" + blatpar + "<br />" + spacegroup + "<br />" + "Formation Energy: " + formation_energy + " meV/atom";
+            var electronicProperties = theory_level + "<br />" + "Band gap: (" + direct + ") " + bandgap + " eV";
+            var label = "{{ baseUrl  }}database/{{  label  }}";
+            var labelpx = label.concat('/pourbaix.png');
+            var labelpd = label.concat('/pbe_bands/band_structure.png');
+            var label_POSCAR = label.concat('/POSCAR');
+            var label_INCAR = label.concat('/INCAR');
+            var label_KPOINTS = label.concat('/KPOINTS');
+        }
+
+        document.getElementById("StructureResultsBox").innerHTML = structureProperties;
+        document.getElementById("ElectronicResultsBox").innerHTML = electronicProperties;
+
+        var poscar_link = document.getElementById('Poscar_Link');
+        poscar_link.href = label_POSCAR;
+        var incar_link = document.getElementById('Incar_Link');
+        incar_link.href = label_INCAR;
+        var kpoints_link = document.getElementById('Kpoints_Link');
+        kpoints_link.href = label_KPOINTS;
+
+        var bands_link = document.getElementById('Bands_Link');
+        bands_link.href = "{{ baseUrl }}bands/{{ mwid }}.pdf";
+
+        bands_diagram = document.createElement("img");
+        bands_diagram.id = 'BandsDiagram';
+        bands_diagram.src = labelpd;
+        bands_diagram.onerror = function() {
+          document.getElementById('BandsDiagram').src="{% static "Images/not_found.png" %}";
+          document.getElementById('BandsDiagram').style.width = '310px';
+        };
+        bands_diagram.style.display = 'inline-block';
+        bands_diagram.style.width = '500px';
+        bands_diagram.style.height = '350px';
+        bands_diagram.style.position = 'relative';
+        bands_diagram.style.left = '450px';
+        bands_diagram.style.top = '-155px';
+        document.body.appendChild(bands_diagram);
+        var pbx_link = document.getElementById("Pourbaix_Link");
+        pbx_link.href ="{{ baseUrl }}pourbaix/{{ mwid }}.pdf";
+        pbx_diagram = document.createElement("img");
+        pbx_diagram.id = 'PourbaixDiagram';
+        pbx_diagram.src = labelpx;
+
+        pbx_diagram.style.display = 'inline-block';
+        pbx_diagram.style.width = '600px';
+        pbx_diagram.style.height = '450px';
+        pbx_diagram.style.position = 'absolute';
+        pbx_diagram.style.clear = 'both';
+        pbx_diagram.style.left = '0px';
+        pbx_diagram.style.top = '1025px';
+        pbx_diagram.onerror = function() {
+          document.getElementById('PourbaixDiagram').src="{% static '/Images/not_found.png' %}";
+          document.getElementById('PourbaixDiagram').style.top = '1075px';
+          document.getElementById('PourbaixDiagram').style.left = '50px';
+          document.getElementById('PourbaixDiagram').style.height = '350px';
+          document.getElementById('PourbaixDiagram').style.width = '310px';
+        };
+        document.body.appendChild(pbx_diagram);
+    }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static "parallax.js" %}"></script>
+
+    <script src="{% static 'javascript/3Dmol/3Dmol-nojquery-min.js' %}"></script>
+    <div id="ParallaxContainer" style="background-color: transparent; position: absolute; top: 125; height: 1350px; width: 100%;" data-parallax="scroll" data-image-src="{% static 'Images/Icon.png' %}"></div>
+    <div id="StructureContainer" style="background-color: white; opacity: 0.9; position: absolute; top: 125; height: 450px; width: 100%;"></div>
+    <div id="BandsDiagramContainer" style="background-color: #c0c0c0; opacity: 0.9; position: absolute; top: 575; height: 450px; width: 100%;"></div>
+    <div id="PourbaixDiagramContainer" style="background-color: white; opacity: 0.9; position: absolute; top: 1025; height: 450px; width: 100%;"></div>
+
+    <a id='Poscar_Link' style='position: relative; top: 105px; left: 543px;'
+      download="POSCAR">
+      <img src="{% static 'Images/download.png' %}" style="height: 60px;"></img>
+        POSCAR
+    </a>
+    <a id='Incar_Link' style='position: relative; top: 190px; left: 386px;'
+      download="INCAR">
+      <img src="{% static 'Images/download.png' %}" style="height: 60px;"></img>
+      INCAR
+    </a>
+    <a id='Kpoints_Link' style='position: relative; top: 275px; left: 250px;'
+      download="KPOINTS">
+      <img src="{% static 'Images/download.png' %}" style="height: 60px;"></img>
+      KPOINTS
+    </a>
+
+    <a id='Bands_Link' style='position: relative; top: 575px; left: -400px;'
+      download="{{ redform }}_bands.pdf">
+      <img src="{% static 'Images/download.png' %}" style="height: 60px;"></img>
+      Bandstructure
+    </a>
+
+    <a id='Pourbaix_Link' style='position: relative; top: 925px; left: 0px;'
+      download="{{ redform }}_pbx.pdf">
+      <img src="{% static 'Images/download.png' %}" style="height: 60px;"></img>
+      Pourbaix Diagram
+    </a>
+
+    <div id="3Dmolborderdiv" style="width: 402px; height: 402px;
+    position: absolute; border: 1px solid black;
+    border-radius: 3px; left: 52px; top: 145px;">
+    </div>
+    <div id="3Dmoldiv" style="width: 400px; height: 400px; position: relative;
+        left: 46px; top: -125px;">
+    </div>
+        <script>
+          (function() {
+            var viewer = $3Dmol.createViewer($("#3Dmoldiv"));
+            var data = "{{  data  }}"
+            viewer.setBackgroundColor(0xffffff);
+            viewer.addModel(data, "xyz");
+            viewer.setStyle({}, {sphere:{}, line:{}});
+            viewer.zoomTo();
+            viewer.render();
+          })();
+        </script>
+
+    <div id="StructureResultsBox">
+        <!--Formula: {{  entry.composition.formula  }}
+        <br>
+        a: {{  a  }}
+        <br>
+        b: {{  b  }}
+        <br>
+        {{  structure.spacegroup.hm  }}-->
+
+    </div>
+    <div id="ElectronicResultsBox"></div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85193239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  <p>{{  label  }}|add:'t'</p>
+    {% with "{{  label  }}"|add:'test' as test %}
+    <p>test</p>
+    {% endwith %}
+  
+    <!--<img id="BandsDiagram" src="{% static '{{ label }}' %}" style="display: inline-block; width: 500px; height: 350px; position: relative; left: 450px; top: -50px;">
+    <img id="PourbaixDiagram" src="{% static 'mp-691133/pourbaix.png' %}" style="display: inline-block; width: 600px; height: 450px; position: absolute; clear: both; left: 0px; top: 1025px;">-->
+</body>

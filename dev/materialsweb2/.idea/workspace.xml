@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="de4c1eea-d1cf-4acb-afbf-b40d2c290ddd" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1bGjpTYhyrkfV08Pzh2nK2GNQjE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/simulation" />
+      <recent name="$PROJECT_DIR$/Static/Images" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static/Images" />
+      <recent name="$PROJECT_DIR$/static/CSS" />
+      <recent name="$PROJECT_DIR$/static/javascript" />
+      <recent name="$PROJECT_DIR$/static/javascript/3Dmol" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de4c1eea-d1cf-4acb-afbf-b40d2c290ddd" name="Default Changelist" comment="" />
+      <created>1588265506984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588265506984</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2109" y="282" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589887791425">
+      <screen x="0" y="27" width="5360" height="1413" />
+    </state>
+    <state x="2109" y="282" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.5360.1413@0.27.5360.1413" timestamp="1589887791425" />
+    <state x="1394" y="282" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.3373.1413@67.27.3373.1413" timestamp="1589464513101" />
+    <state x="3863" y="610" width="618" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589815745835">
+      <screen x="0" y="27" width="5360" height="1413" />
+    </state>
+    <state x="3863" y="610" width="618" height="396" key="#com.intellij.fileTypes.FileTypeChooser/0.27.5360.1413@0.27.5360.1413" timestamp="1589815745835" />
+    <state x="2441" y="481" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589903406552">
+      <screen x="0" y="27" width="5360" height="1413" />
+    </state>
+    <state x="2441" y="481" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.5360.1413@0.27.5360.1413" timestamp="1589903406552" />
+    <state x="2491" y="366" width="309" height="516" key="EnvironmentVariablesDialog" timestamp="1589887740012">
+      <screen x="0" y="27" width="5360" height="1413" />
+    </state>
+    <state x="2491" y="366" width="309" height="516" key="EnvironmentVariablesDialog/0.27.5360.1413@0.27.5360.1413" timestamp="1589887740012" />
+    <state x="3666" y="491" width="424" height="484" key="FileChooserDialogImpl" timestamp="1589887935914">
+      <screen x="0" y="27" width="5360" height="1413" />
+    </state>
+    <state x="3666" y="491" width="424" height="484" key="FileChooserDialogImpl/0.27.5360.1413@0.27.5360.1413" timestamp="1589887935914" />
+    <state x="2374" y="491" width="424" height="484" key="FileChooserDialogImpl/67.27.3373.1413@67.27.3373.1413" timestamp="1588690844911" />
+    <state x="2197" y="367" key="SettingsEditor" timestamp="1589887943718">
+      <screen x="0" y="27" width="5360" height="1413" />
+    </state>
+    <state x="2197" y="367" key="SettingsEditor/0.27.5360.1413@0.27.5360.1413" timestamp="1589887943718" />
+    <state x="1307" y="300" width="432" height="475" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1591372275699">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="3588" y="394" width="770" height="773" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.5360.1413@0.27.5360.1413" timestamp="1591032662348" />
+    <state x="4223" y="374" width="762" height="658" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.3440.1440/0.27.1920.1053@1920.0.3440.1440" timestamp="1590495700918" />
+    <state x="1308" y="300" width="432" height="482" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.3440.1440/67.27.1853.1053@67.27.1853.1053" timestamp="1590519944171" />
+    <state x="1307" y="300" width="432" height="475" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591372275699" />
+    <state x="2326" y="368" width="432" height="637" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.3373.1317@67.27.3373.1317" timestamp="1590599695295" />
+    <state x="2325" y="394" width="512" height="679" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.3373.1413@67.27.3373.1413" timestamp="1591218544181" />
+    <state x="1707" y="539" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589464521822">
+      <screen x="67" y="27" width="3373" height="1413" />
+    </state>
+    <state x="1707" y="539" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.3373.1413@67.27.3373.1413" timestamp="1589464521822" />
+    <state x="577" y="378" width="670" height="676" key="search.everywhere.popup" timestamp="1590065334810">
+      <screen x="67" y="27" width="3373" height="1413" />
+    </state>
+    <state x="577" y="378" width="670" height="676" key="search.everywhere.popup/67.27.3373.1413@67.27.3373.1413" timestamp="1590065334810" />
+    <state x="2308" y="647" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1591191523485">
+      <screen x="67" y="27" width="3373" height="1413" />
+    </state>
+    <state x="2308" y="647" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.3373.1413@67.27.3373.1413" timestamp="1591191523485" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/simulation/utils/strings.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/simulation/analysis/xrd.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

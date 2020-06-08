@@ -1,0 +1,87 @@
+{% extends 'base_generic.html' %}
+{% load staticfiles %}
+
+
+
+{% block content %}
+    <img src="{% static 'Images/Logo.png' %}" width="295px" height="115px" style="display: inline; overflow: hidden; position: absolute; top: 10px; left: 50px; background-color: transparent"/>
+
+    <div id="DBContainer">
+
+      <!--{% if is_signed_in %}-->
+        <p>
+            <div class="AppLinkBox"><a class="AppLink" href="workflow" id="Workflow">VASP Workflow Builder</a></div>
+            <div class="AppLinkBox"><a class="AppLink" href="characterization" id="Characterization">Structure Characterization</a></div>
+        </p>
+        <p>
+            <div class="AppLinkBox"><a class="AppLink" href="bulkmaterials" id="BulkMaterials">Bulk Materials</a></div>
+            <div class="AppLinkBox"><a class="AppLink" href="twodmaterials" id="2DMaterials">2D Materials</a></div>
+            <div class="AppLinkBox"><a class="AppLink" href="gasp" id="GASP">GASP</a></div>
+        </p>
+      <!--{% else %}
+            <p style="position: relative; width: 100%; text-align: center; font-size: 24px;">Please sign in or create an account to start using MaterialsWeb.</p>
+            <div class="container" style="background-color: transparent;">
+              <form method="post">{% csrf_token %}
+                <div class="group">
+                  <input onclick="this.setSelectionRange(0, this.value.length)" style="margin-left: auto; margin-right: auto; background-color: transparent;" type="text" name="email" id="email" required>
+                  <span style="margin-left: auto; margin-right: auto;" class="bar"></span>
+                  <label style="color: black;">Email</label>
+                </div>
+                <div class="group">
+                  <input onclick="this.setSelectionRange(0, this.value.length)" style="margin-left: auto; margin-right: auto; background-color: transparent;" type="password" name="password" id="password" required>
+                  <span style="margin-left: auto; margin-right: auto;" class="bar"></span>
+                  <label style="color: black;">Password</label>
+                </div>
+                <input type="submit" class="Submit" name="LoginSubmit" id="LoginSubmit" value="Sign In" style="margin-left: auto; margin-right: auto;"/>
+                <input type="submit" class="Submit" name="RegisterSubmit" id="RegisterSubmit" value="Register" style="margin-left: auto; margin-right: auto;"/>
+              </form>
+
+            </div>
+            <p style="position: relative; top: -100px; text-align: center; color: red; animation: fadein 1s;
+              -moz-animation: fadein 1s; /* Firefox */
+              -webkit-animation: fadein 1s; /* Safari and Chrome */
+              -o-animation: fadein 1s; /* Opera */">{{ alert }}</p>
+
+      {% endif %}-->
+    </div>
+
+          <!--{% if is_signed_in %}-->
+            <form>{% csrf_token %}
+                <input type="text" name=nMat2D value="{{ mat2d }}" readonly style="display: inline-block; font-size: 40; background-color: transparent; color: black; width: 135; position: absolute; left: 358px; top: 413px; text-align: left; border: none;">
+
+                <input type="text" name=nMaxPhases value="{{ MAX_phases }}" readonly style="display: inline-block; font-size: 40; background-color: transparent; color: black; width: 135; position: absolute; left: 50px; top: 413px; text-align: left; border: none;">
+            </form>
+
+            <p style="position: absolute; top: 400px; left: 497px; font-size: 30px; color: black; width: 80px; background-color: transparent">Entries</p>
+            <p style="position: absolute; top: 400px; left: 190px; font-size: 30px; color: black; width: 80px; background-color: transparent">Entries</p>
+          <!--{% endif %}-->
+
+    <div id="UnderVideo" style="background-color: transparent; position: absolute; z-index: -1; top: 10; height: 930px; width: 100%;" data-parallax="scroll" data-image-src="{% static 'static/Icon.svg' %}"></div>
+
+    <div id="InfoBlock" style="background-color: white; position: absolute; top: 640; height: 300px; width: 100%; opacity: 0.9;">
+      <p style="position: relative; width: 800px; left: 100px; top: 0px; font-size: 32px; color: black;"> Browse our databases of structural, electronic,</br>and thermodynamic data for 2D/3D materials</p>
+      <p style="position: relative; width: 800px; left: 100px; top: 0px; font-size: 32px; color: black;"> Write your own python workflows for using</br>VASP to characterize your own 2D</br>materials</p>
+    </div>
+    <img src="{% static "Images/db_glyphicon.png"%}" style="position: absolute; top: 680px; left: 50px; height: 50px;"></img>
+    <img src="{% static "Images/coding_glyphicon.png"%}" style="position: absolute; top: 790px; left: 50px; height: 45px;"></img>
+
+    <div id="BottomBlock" style="background-color: #454343; color: white; position: absolute; top: 940; height: 300px; width: 100%;">
+      <p style="position: relative; top: 100px; left: 50px; font-size: 32px; width: 700px;"> powered by <a href="https://github.com/henniggroup/MPInterfaces" style="font-size: 32px; color: #fcb040;">MPInterfaces</a> and <a href="https://github.com/materialsproject/pymatgen" style="font-size: 32px; color: #fcb040;">Pymatgen</a></p>
+    </div>
+
+    {% if dbs_loaded %}
+        <p style="display: None">DBs Loaded</p>
+    {% endif %}
+
+    <script>
+
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85193239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+{% endblock content%}

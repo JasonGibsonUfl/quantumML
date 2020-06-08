@@ -1,0 +1,78 @@
+{% load static %}
+
+<head>
+    <title>materialsweb</title>
+    <link rel="icon" href="{% static 'Images/Black_Icon.png' %}" sizes="16x16">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8"/>
+    <meta name="description" content="An online repository of electronic structure data for 2D and bulk layered materials."/>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta name="google-site-verification" content="SBScCrEfGtKxeXsL5FNkENAr08afbfdwDszHH9iJo_4" />
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/homestyle.css' %}" />
+</head>
+
+<body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="{% static "parallax.js" %}"></script>
+
+  <div style="position: relative; top: 0px; left: 0px; background-color: black; opacity: 0.9; width: 100%;"></div>
+
+<div id="TopBar" style="background-color: white; position: absolute; top: 0; height: 125px; width: 100%; opacity: 0.9;"></div>
+
+    <div id="HomePageHeaderBox">
+        <div id="Menu">
+            <a class="hvr-float-shadow" href="/" id="Home">Home</a>
+            <a class="hvr-float-shadow" href="/about" id="About">About</a>
+            <a class="hvr-float-shadow" href="/docs" id="Docs">Docs</a>
+            <a class="hvr-float-shadow" href="/contact" id="Contact">Contact</a>
+            <a class="hvr-float-shadow" href="/api" id="Api">API</a>
+            {% if is_signed_in %}
+              <a class="hvr-float-shadow" href="/logout" id="SignOut">Sign Out</a>
+            {% else %}
+              <a class="hvr-float-shadow" href="/login" id="SignOut">Sign In</a>
+            {% endif %}
+        </div>
+    </div>
+
+<img src="{% static "Images/Logo.png" %}" width="295px" height="115px" style="display: inline; overflow: hidden; position: absolute; top: 10px; left: 50px; background-color: transparent"/>
+
+    <div class="container">
+       <form method="post">{% csrf_token %}
+        <div class="group">
+          <input onclick="this.setSelectionRange(0, this.value.length)" style="margin-left: auto; margin-right: auto;" type="text" name="email" id="email" required>
+          <span style="margin-left: auto; margin-right: auto;" class="bar"></span>
+          <label>Email</label>
+        </div>
+
+        <div class="group">
+          <input onclick="this.setSelectionRange(0, this.value.length)" style="margin-left: auto; margin-right: auto;" type="password" name="password" id="password" required>
+          <span style="margin-left: auto; margin-right: auto;" class="bar"></span>
+          <label>Password</label>
+        </div>
+
+        <input type="submit" name="submit" class="Submit" value="Sign In" style="font-family: Lato; position: relative; top: 50px; left: 40%; width: 20%;"/>
+
+       </form>
+      </div>
+
+      <p style="text-align: center; color: red; animation: fadein 1s;
+        -moz-animation: fadein 1s; /* Firefox */
+        -webkit-animation: fadein 1s; /* Safari and Chrome */
+        -o-animation: fadein 1s; /* Opera */">{{ alert }}</p>
+
+      <p style="text-align: center;">Don't have an account yet? <a href="/register">Create one</a>
+
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85193239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>

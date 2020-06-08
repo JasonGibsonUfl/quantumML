@@ -1,0 +1,587 @@
+* {
+/*    background-color: #E6E6E6;*/
+    font-family: 'Nunito', sans-serif;
+}
+
+#Icon {
+  border-radius: 00%;
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+          transition:         transform .5s ease-in-out;
+}
+#Icon:hover {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+#HomePageHeaderBox {
+/*    display: inline-block;*/
+    height: 200px;
+    width: 100%;
+    color: #454343;
+/*    background-color: #e55934;*/
+/*    padding: 3px;*/
+/*    border: 2px solid #454343;*/
+    border-radius: 3px;
+    z-index: 5;
+}
+
+#HomePageHeader {
+    font-size: 60px;
+    position: relative;
+    top: -135px;
+    left: 150px;
+    width: 400px;
+    background-color: transparent;
+    padding: 3px;
+/*    border: 2px solid #454343;*/
+    border-radius: 3px;
+}
+
+#ResultPageHeader {
+    font-size: 40px;
+    position: relative;
+    top: -120px;
+    left: 150px;
+    width: 400px;
+    background-color: transparent;
+    padding: 3px;
+/*    border: 2px solid #454343;*/
+    border-radius: 3px;
+}
+
+#PageHeader {
+    font-size: 40px;
+    width: 80%;
+    position: relative;
+    background-color: transparent;
+    bottom: 100;
+    left: 50;
+    float: left;
+}
+
+a {
+    color: #454343;
+    font-size:24;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#Menu {
+    height: 50px;
+    width: 500px;
+    position: absolute;
+    top: 50;
+    left: 600;
+    background-color: transparent;
+    color: #454343;
+    font-size: 30px;
+}
+
+.MenuLink {
+    display: inline-block;
+    color: #454343;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    margin-left: auto;
+    padding: 3px;
+    border: 1px solid #454343;
+    border-radius: 3px;
+}
+
+.MenuLink:hover {
+/*    background-color: #454343; #c0c0c0;*/
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    color: black;
+}
+
+.ElementBox {
+    display: inline-block;
+    padding: 3px;
+    background-color: transparent;
+}
+
+#Group1 {
+    position: absolute;
+    top: 180px;
+    left: 50px;
+}
+
+#Group2 {
+    position: absolute;
+    top: 240px;
+    left: 110px;
+}
+
+#Group3 {
+    position: absolute;
+    top: 360px;
+    left: 170px;
+}
+
+#Group4 {
+    position: absolute;
+    top: 360px;
+    left: 230px;
+}
+
+#Group5 {
+    position: absolute;
+    top: 360px;
+    left: 290px;
+}
+
+#Group6 {
+    position: absolute;
+    top: 360px;
+    left: 350px;
+}
+
+#Group7 {
+    position: absolute;
+    top: 360px;
+    left: 410px;
+}
+
+#Group8 {
+    position: absolute;
+    top: 360px;
+    left: 470px;
+}
+
+#Group9 {
+    position: absolute;
+    top: 360px;
+    left: 530px;
+}
+
+#Group10 {
+    position: absolute;
+    top: 360px;
+    left: 590px;
+}
+
+#Group11 {
+    position: absolute;
+    top: 360px;
+    left: 650px;
+}
+
+#Group12 {
+    position: absolute;
+    top: 360px;
+    left: 710px;
+}
+
+#Group13 {
+    position: absolute;
+    top: 240px;
+    left: 770px;
+}
+
+#Group14 {
+    position: absolute;
+    top: 240px;
+    left: 830px;
+}
+
+#Group15 {
+    position: absolute;
+    top: 240px;
+    left: 890px;
+}
+
+#Group16 {
+    position: absolute;
+    top: 240px;
+    left: 950px;
+}
+
+#Group17 {
+    position: absolute;
+    top: 240px;
+    left: 1010px;
+}
+
+#Group18 {
+    position: absolute;
+    top: 180px;
+    left: 1070px;
+}
+
+.live_element {
+    font-size: 24px;
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    background-color: #454343;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.live_element:hover {
+  background-color: #fcb040; /*#c0c0c0;*/
+  -webkit-transition: background 0.05s;
+  -moz-transition: background 0.05s;
+}
+
+.dead_element {
+    font-size: 24px;
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    background-color: gray;
+    color: white;
+    height: 50px;
+    width: 50px;
+    opacity: 0.2;
+/*    border: 2px solid gray;
+    background-color: gray;*/
+    border-radius: 100%;
+    cursor: default;
+}
+
+.placeholder {
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    color: white;
+    height: 50px;
+    width: 50px;
+    opacity: 0.2;
+/*    border: 2px solid gray;
+    background-color: gray;*/
+    border-radius: 100%;
+    cursor: default;
+}
+
+#FormulaBox {
+    position: absolute;
+    font-size: 34;
+    color: #454343;
+    height: 45px;
+    width: 510px;
+    top: 150px;
+    left: 175px;
+    display: inline-block;
+/*    border: 1px solid #454343;*/
+    border-radius: 3px;
+/*    background-color: transparent;*/
+}
+
+.formulabox {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: none;
+/*  -webkit-border-radius: 21px;
+  border-radius: 21px;*/
+  color: rgba(140,140,140,1);
+  text-decoration: normal;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: white;
+  -webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5) inset;
+  box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5) inset;
+  -webkit-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -moz-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -o-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+.formulabox:hover {
+  color: rgba(181,181,181,1);
+  background: white;
+  -webkit-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -moz-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -o-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+.formulabox:focus {
+  width: 213px;
+  padding: -13px 20px 0;
+  color: rgba(255,255,255,1);
+  -webkit-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -moz-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  -o-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+}
+
+#Submit {
+    background-color: #454343; /*#fcb040;*/
+    height: 50px;
+    font-size: 30px;
+    width: auto;
+    color: white;
+    position: absolute;
+    top: 200px;
+    left: 375px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+}
+
+#Submit:hover {
+    background-color: #fcb040;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+}
+
+#StructureResultsBox {
+    position: absolute;
+    font-size: 24;
+    width: 600px;
+    height: 156px;
+    left: 550px;
+    top: 155px;
+    background-color: transparent;
+    color: #454343;
+}
+
+#ElectronicResultsBox {
+    position: absolute;
+    font-size: 24;
+    width: 400px;
+    height: 50px;
+    left: 50px;
+    top: 705px;
+    background-color: transparent;
+    color: #454343;
+}
+
+input[type=number] {
+    border: 0;
+}
+
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    display: none;
+    margin: 0;
+}
+
+.option {
+  border: 1px solid white;
+  color: white;
+  border-radius: 3px;
+  position: absolute;
+  display: inline-block;
+  clear: both;
+  z-index: 3;
+  -webkit-transition: border 0.5s;
+  -webkit-transition: color 0.5s;
+  -moz-transition: border 0.5s;
+  -webkit-transition: color 0.5s;
+}
+
+.option:hover {
+  border: 1px solid #fcb040;
+  color: #fcb040;
+}
+
+#Footer {
+  background-color: #fcb040;
+  position: relative;
+  top: 1000px;
+  width: 100%;
+  height: auto;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    color: white;
+    opacity: 0.99;
+    border: none;
+    border-radius: 3px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #454343;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: none;
+    border-radius: 23px;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fcb040;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#Help {
+    background-color: transparent; /*#fcb040;*/
+    height: 50px;
+    font-size: 30px;
+    width: auto;
+    color: #fcb040;
+    position: absolute;
+    top: 145px;
+    left: 700px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+}
+
+#option {
+/*  display: inline-block*/
+  position: relative;
+  top: 0px;
+  left: 50px;
+  border: 3px solid #454343;
+  color: #454343;
+  border-radius: 3px;
+  -webkit-transition: border 0.5s;
+  -moz-transition: border 0.5s;
+  -webkit-transition: color 0.5s;
+  -moz-transition: color 0.5s;
+}
+
+#option:hover {
+  border: 3px solid #fcb040;
+  color: #fcb040;
+  -webkit-transition: border 0s;
+  -moz-transition: border 0s;
+  -webkit-transition: color 0.5s;
+  -moz-transition: color 0.5s;
+}
+
+#Options {
+  display: inline-block;
+  position: relative;
+  top: 700px;
+  left: 50px;
+}
+
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+
+.hvr-float-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  margin-left: auto;
+  padding: 3px;
+  border: none;
+  border-radius: 3px;
+  z-index: 10;
+}
+.hvr-float-shadow:before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+.hvr-float-shadow:hover, .hvr-float-shadow:focus, .hvr-float-shadow:active {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  /* move the element up by 5px */
+}
+.hvr-float-shadow:hover:before, .hvr-float-shadow:focus:before, .hvr-float-shadow:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+.expandUp{
+	animation-name: expandUp;
+	-webkit-animation-name: expandUp;
+
+	animation-duration: 0.7s;
+	-webkit-animation-duration: 0.7s;
+
+	animation-timing-function: ease;
+	-webkit-animation-timing-function: ease;
+
+	visibility: visible !important;
+}
+
+@keyframes expandUp {
+	0% {
+		transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60%{
+		transform: translateY(-7%) scaleY(1.12);
+	}
+	75%{
+		transform: translateY(3%);
+	}
+	100% {
+		transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
+
+@-webkit-keyframes expandUp {
+	0% {
+		-webkit-transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60%{
+		-webkit-transform: translateY(-7%) scaleY(1.12);
+	}
+	75%{
+		-webkit-transform: translateY(3%);
+	}
+	100% {
+		-webkit-transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
