@@ -1,0 +1,9 @@
+README.md
+setup.py
+quantumML/__init__.py
+quantumML/machine_learning.py
+quantumML/rest.py
+quantumML.egg-info/PKG-INFO
+quantumML.egg-info/SOURCES.txt
+quantumML.egg-info/dependency_links.txt
+quantumML.egg-info/top_level.txt
