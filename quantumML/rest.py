@@ -233,7 +233,7 @@ class MWRester(object):
 
 
     @staticmethod
-    def get_soap(calculation, rcut=6, nmax=8, lmax=8, fmt='MW'):
+    def get_soap(calculation, rcut=7, nmax=6, lmax=8, fmt='MW'):
         if fmt == 'MW':
             urlp = 'http://2dmaterialsweb.org/' + calculation['path'][22:] + '/POSCAR'
             file = urllib.request.urlopen(urlp)
@@ -242,7 +242,6 @@ class MWRester(object):
         elif fmt == 'poscar':
             file = calculation
         ml=vasp.read_vasp(file)
-        species=['Cd','Te']
         periodic_soap = SOAP(
         periodic=True,
         species=np.unique(ml.get_atomic_numbers()),
