@@ -233,7 +233,7 @@ class MWRester(object):
 
 
     @staticmethod
-    def get_soap(calculation, rcut=7, nmax=5, lmax=8, fmt='MW'):
+    def get_soap(calculation, rcut=6, nmax=8, lmax=8, fmt='MW'):
         if fmt == 'MW':
             urlp = 'http://2dmaterialsweb.org/' + calculation['path'][22:] + '/POSCAR'
             file = urllib.request.urlopen(urlp)
