@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: quantumML
-Version: 0.0.1
+Version: 0.0.2
 Summary: A small example package
 Home-page: https://github.com/jasongibsonufl/quantumML
 Author: Jason Gibson
@@ -11,6 +11,7 @@ Description: # Example Package
         This is a simple example package. You can use
         [Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
         to write your content.
+        # quantumML
         
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3

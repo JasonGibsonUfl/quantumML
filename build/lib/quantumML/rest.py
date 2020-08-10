@@ -2,6 +2,7 @@ from urllib.request import urlopen
 import json
 import urllib
 import os
+import io
 import math
 from pymatgen.core.structure import Structure
 from ase.io import vasp
@@ -232,13 +233,18 @@ class MWRester(object):
 
 
     @staticmethod
-    def get_soap(file, rcut=7, nmax=5, lmax=8):
-        print('./' + file)
-        ml=vasp.read_vasp('./'+file)
-        species=['Cd','Te']
+    def get_soap(calculation, rcut=7, nmax=6, lmax=8, fmt='MW'):
+        if fmt == 'MW':
+            urlp = 'http://2dmaterialsweb.org/' + calculation['path'][22:] + '/POSCAR'
+            file = urllib.request.urlopen(urlp)
+            file = file.read().decode("utf-8")
+            file = io.StringIO(file)
+        elif fmt == 'poscar':
+            file = calculation
+        ml=vasp.read_vasp(file)
         periodic_soap = SOAP(
         periodic=True,
-        species=species,
+        species=np.unique(ml.get_atomic_numbers()),
         rcut=rcut,
         nmax=nmax,
         lmax=lmax,

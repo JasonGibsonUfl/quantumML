@@ -243,14 +243,14 @@ class MWRester(object):
             file = calculation
         ml=vasp.read_vasp(file)
         periodic_soap = SOAP(
-        periodic=True,
-        species=np.unique(ml.get_atomic_numbers()),
-        rcut=rcut,
-        nmax=nmax,
-        lmax=lmax,
-        rbf='gto',
-        sigma=0.125,
-        average=True
+            periodic=True,
+            species=np.unique(ml.get_atomic_numbers()),
+            rcut=rcut,
+            nmax=nmax,
+            lmax=lmax,
+            rbf='gto',
+            sigma=0.125,
+            average=True
         )
         soap = periodic_soap.create(ml)
         #soap = 1
