@@ -14,13 +14,15 @@ from pymatgen.io.vasp.outputs import Vasprun, Outcar
 from typing import Optional
 import warnings
 import glob
-
+import os
 from monty.serialization import loadfn
 from pathlib import Path
 
+module_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 
 def _read_user_incar(fname):
-    fil = open(fname, 'r')
+    fpath = os.path.join(module_dir,'library',fname)
+    fil = open(fpath, 'r')
     lines = fil.readlines()
     incar = {}
     for line in lines:
@@ -28,6 +30,7 @@ def _read_user_incar(fname):
         val = line.split('=')[-1].strip()
         incar[key] = val
     return incar
+
 
 
 class MPRelaxSet2D(DictSet):
