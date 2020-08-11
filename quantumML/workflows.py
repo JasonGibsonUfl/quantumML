@@ -1,4 +1,4 @@
-from pymatgen.io.vasp.sets import DictSet
+from pymatgen.io.vasp.sets import DictSet, _load_yaml_config
 from pymatgen.core.structure import Structure
 from atomate.vasp.workflows.base.core import get_wf
 from atomate.vasp.powerups import add_small_gap_multiply, add_stability_check, add_modify_incar, \
@@ -19,18 +19,16 @@ from monty.serialization import loadfn
 from pathlib import Path
 
 
-def _load_yaml_config(fname):
-    config = loadfn(str('.' / ("%s.yaml" % fname)))
-    if "PARENT" in config:
-        parent_config = _load_yaml_config(config["PARENT"])
-        for k, v in parent_config.items():
-            if k not in config:
-                config[k] = v
-            elif isinstance(v, dict):
-                v_new = config.get(k, {})
-                v_new.update(v)
-                config[k] = v_new
-    return config
+def _read_user_incar(fname):
+    fil = open(fname, 'r')
+    lines = fil.readlines()
+    incar = {}
+    for line in lines:
+        key = (line.split('=')[0].strip())
+        val = line.split('=')[-1].strip()
+        incar[key] = val
+    return incar
+
 
 class MPRelaxSet2D(DictSet):
     """
@@ -41,14 +39,15 @@ class MPRelaxSet2D(DictSet):
     which result in different fitted values.
     """
 
-    CONFIG = _load_yaml_config("MPRelaxSet2D")
+    CONFIG = _load_yaml_config("MPRelaxSet")
 
     def __init__(self, structure, **kwargs):
         """
         :param structure: Structure
         :param kwargs: Same as those supported by DictSet.
         """
-        super().__init__(structure, MPRelaxSet2D.CONFIG, **kwargs)
+        incar = _read_user_incar('Relax2D')
+        super().__init__(structure, MPRelaxSet2D.CONFIG, user_incar_settings={incar}, **kwargs)
         self.kwargs = kwargs
 
 
@@ -322,7 +321,7 @@ def wf_bandstructure2D(structure, c=None):
     mps2d = MPStaticSet2D(structure)
     '''check bandstructure.yaml'''
     wf = get_wf(structure, "bandstructure.yaml", vis=MPRelaxSet2D(structure, force_gamma=True), \
-                params=[{'vasp_input_set': mpr2d}, {'vasp_input_set':mps2d}], common_params={"vasp_cmd": vasp_cmd, "db_file": db_file})
+                params=[{'vasp_input_set': mpr2d}], common_params={"vasp_cmd": vasp_cmd, "db_file": db_file})
 
     wf = add_common_powerups(wf, c)
 

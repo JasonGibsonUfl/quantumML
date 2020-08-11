@@ -1,0 +1,23 @@
+PREC = Fast
+ALGO = Accurate
+EDIFF = 1e-06
+ENCUT = 600
+NELM = 60
+NSW = 50
+GGA = OR
+LREAL = Auto
+LASPH = True
+LUSE_VDW = True
+ISIF = 3
+IBRION = 2
+ISPIN = 2
+AGGAC = 0.000
+SIGMA = 0.05
+ISMEAR = 1
+#OUTPUTS
+LORBIT = 11
+LCHARG = False
+LVTOT = False
+LAECHG = False
+LWAVE = False
+LVHAR = True
