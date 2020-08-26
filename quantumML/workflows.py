@@ -6,14 +6,8 @@ from atomate.vasp.powerups import add_small_gap_multiply, add_stability_check, a
 
 
 from atomate.vasp.config import SMALLGAP_KPOINT_MULTIPLY, STABILITY_CHECK, VASP_CMD, DB_FILE, \
-    ADD_WF_METADATA
-
-from pymatgen.io.vasp.inputs import Incar, Poscar, Potcar, Kpoints, VaspInput
-from pymatgen.io.vasp.outputs import Vasprun, Outcar
-
-from typing import Optional
-import warnings
-import glob
+    ADD_WF_METADATA, VDW_KERNEL_DIR
+import numpy as np
 import os
 from monty.serialization import loadfn
 from pathlib import Path
@@ -21,7 +15,7 @@ from pathlib import Path
 module_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 
 def _read_user_incar(fname):
-    fpath = os.path.join(module_dir,'library',fname)
+    fpath = os.path.join(module_dir,fname)
     fil = open(fpath, 'r')
     lines = fil.readlines()
     incar = {}
@@ -49,282 +43,98 @@ class MPRelaxSet2D(DictSet):
         :param structure: Structure
         :param kwargs: Same as those supported by DictSet.
         """
-        incar = _read_user_incar('Relax2D')
-        super().__init__(structure, MPRelaxSet2D.CONFIG, user_incar_settings={incar}, **kwargs)
+        incar = _read_user_incar('Relax2D.txt')
+        super().__init__(structure, MPRelaxSet2D.CONFIG, user_incar_settings=incar, **kwargs)
         self.kwargs = kwargs
 
-
-class MPStaticSet2D(MPRelaxSet2D):
+class MPScanRelaxSet2D(DictSet):
     """
-    Creates input files for a static calculation.
+    Class for writing a relax input set using Strongly Constrained and
+    Appropriately Normed (SCAN) semilocal density functional.
+    Notes:
+        1. This functional is only available from VASP.5.4.3 upwards.
+        2. Meta-GGA calculations require POTCAR files that include
+        information on the kinetic energy density of the core-electrons,
+        i.e. "PBE_52" or "PBE_54". Make sure the POTCARs include the
+        following lines (see VASP wiki for more details):
+            $ grep kinetic POTCAR
+            kinetic energy-density
+            mkinetic energy-density pseudized
+            kinetic energy density (partial)
     """
 
-    def __init__(
-            self,
-            structure,
-            prev_incar=None,
-            prev_kpoints=None,
-            lepsilon=False,
-            lcalcpol=False,
-            reciprocal_density=100,
-            small_gap_multiply=None,
-            **kwargs
-    ):
+    CONFIG = _load_yaml_config("MPSCANRelaxSet")
+
+    def __init__(self, structure, bandgap=0, **kwargs):
         """
         Args:
-            structure (Structure): Structure from previous run.
-            prev_incar (Incar): Incar file from previous run.
-            prev_kpoints (Kpoints): Kpoints from previous run.
-            lepsilon (bool): Whether to add static dielectric calculation
-            reciprocal_density (int): For static calculations, we usually set the
-                reciprocal density by volume. This is a convenience arg to change
-                that, rather than using user_kpoints_settings. Defaults to 100,
-                which is ~50% more than that of standard relaxation calculations.
-            small_gap_multiply ([float, float]): If the gap is less than
-                1st index, multiply the default reciprocal_density by the 2nd
-                index.
-            **kwargs: kwargs supported by MPRelaxSet.
+            structure (Structure): Input structure.
+            bandgap (int): Bandgap of the structure in eV. The bandgap is used to
+                    compute the appropriate k-point density and determine the
+                    smearing settings.
+                    Metallic systems (default, bandgap = 0) use a KSPACING value of 0.22
+                    and Methfessel-Paxton order 2 smearing (ISMEAR=2, SIGMA=0.2).
+                    Non-metallic systems (bandgap > 0) use the tetrahedron smearing
+                    method (ISMEAR=-5, SIGMA=0.05). The KSPACING value is
+                    calculated from the bandgap via Eqs. 25 and 29 of Wisesa, McGill,
+                    and Mueller [1] (see References). Note that if 'user_incar_settings'
+                    or 'user_kpoints_settings' override KSPACING, the calculation from
+                    bandgap is not performed.
+            vdw (str): set "rVV10" to enable SCAN+rVV10, which is a versatile
+                    van der Waals density functional by combing the SCAN functional
+                    with the rVV10 non-local correlation functional. rvv10 is the only
+                    dispersion correction available for SCAN at this time.
+            **kwargs: Same as those supported by DictSet.
+        References:
+            [1] P. Wisesa, K.A. McGill, T. Mueller, Efficient generation of
+            generalized Monkhorst-Pack grids through the use of informatics,
+            Phys. Rev. B. 93 (2016) 1–10. doi:10.1103/PhysRevB.93.155109.
         """
-        super().__init__(structure, **kwargs)
-        if isinstance(prev_incar, str):
-            prev_incar = Incar.from_file(prev_incar)
-        if isinstance(prev_kpoints, str):
-            prev_kpoints = Kpoints.from_file(prev_kpoints)
-
-        self.prev_incar = prev_incar
-        self.prev_kpoints = prev_kpoints
-        self.reciprocal_density = reciprocal_density
+        incar = _read_user_incar('Relax2D.txt')
+        super().__init__(structure, MPScanRelaxSet2D.CONFIG, user_incar_settings=incar, **kwargs)
+        self.bandgap = bandgap
         self.kwargs = kwargs
-        self.lepsilon = lepsilon
-        self.lcalcpol = lcalcpol
-        self.small_gap_multiply = small_gap_multiply
 
-    @property
-    def incar(self):
-        """
-        :return: Incar
-        """
-        parent_incar = super().incar
-        incar = (
-            Incar(self.prev_incar)
-            if self.prev_incar is not None
-            else Incar(parent_incar)
-        )
-
-        incar.update(
-            {
-                "IBRION": -1,
-                "ISMEAR": -5,
-                "LAECHG": True,
-                "LCHARG": True,
-                "LORBIT": 11,
-                "LVHAR": True,
-                "LWAVE": False,
-                "NSW": 0,
-                "ICHARG": 0,
-                "ALGO": "Normal",
-            }
-        )
-
-        if self.lepsilon:
-            incar["IBRION"] = 8
-            incar["LEPSILON"] = True
-
-            # LPEAD=T: numerical evaluation of overlap integral prevents
-            # LRF_COMMUTATOR errors and can lead to better expt. agreement
-            # but produces slightly different results
-            incar["LPEAD"] = True
-
-            # Note that DFPT calculations MUST unset NSW. NSW = 0 will fail
-            # to output ionic.
-            incar.pop("NSW", None)
-            incar.pop("NPAR", None)
-
-        if self.lcalcpol:
-            incar["LCALCPOL"] = True
-
-        for k in ["MAGMOM", "NUPDOWN"] + list(
-                self.kwargs.get("user_incar_settings", {}).keys()
-        ):
-            # For these parameters as well as user specified settings, override
-            # the incar settings.
-            if parent_incar.get(k, None) is not None:
-                incar[k] = parent_incar[k]
-            else:
-                incar.pop(k, None)
-
-        # use new LDAUU when possible b/c the Poscar might have changed
-        # representation
-        if incar.get("LDAU"):
-            u = incar.get("LDAUU", [])
-            j = incar.get("LDAUJ", [])
-            if sum([u[x] - j[x] for x, y in enumerate(u)]) > 0:
-                for tag in ("LDAUU", "LDAUL", "LDAUJ"):
-                    incar.update({tag: parent_incar[tag]})
-            # ensure to have LMAXMIX for GGA+U static run
-            if "LMAXMIX" not in incar:
-                incar.update({"LMAXMIX": parent_incar["LMAXMIX"]})
-
-        # Compare ediff between previous and staticinputset values,
-        # choose the tighter ediff
-        incar["EDIFF"] = min(incar.get("EDIFF", 1), parent_incar["EDIFF"])
-        return incar
-
-    @property
-    def kpoints(self) -> Optional[Kpoints]:
-        """
-        :return: Kpoints
-        """
-        self._config_dict["KPOINTS"]["reciprocal_density"] = self.reciprocal_density
-        kpoints = super().kpoints
-
-        # Prefer to use k-point scheme from previous run
-        # except for when lepsilon = True is specified
-        if kpoints is not None:
-            if self.prev_kpoints and self.prev_kpoints.style != kpoints.style:
-                if (self.prev_kpoints.style == Kpoints.supported_modes.Monkhorst) and (
-                        not self.lepsilon
-                ):
-                    k_div = [kp + 1 if kp % 2 == 1 else kp for kp in kpoints.kpts[0]]
-                    kpoints = Kpoints.monkhorst_automatic(k_div)
-                else:
-                    kpoints = Kpoints.gamma_automatic(kpoints.kpts[0])
-        return kpoints
-
-    def override_from_prev_calc(self, prev_calc_dir="."):
-        """
-        Update the input set to include settings from a previous calculation.
-        Args:
-            prev_calc_dir (str): The path to the previous calculation directory.
-        Returns:
-            The input set with the settings (structure, k-points, incar, etc)
-            updated using the previous VASP run.
-        """
-        vasprun, outcar = get_vasprun_outcar(prev_calc_dir)
-
-        self.prev_incar = vasprun.incar
-        self.prev_kpoints = vasprun.kpoints
-
-        if self.standardize:
-            warnings.warn(
-                "Use of standardize=True with from_prev_run is not "
-                "recommended as there is no guarantee the copied "
-                "files will be appropriate for the standardized "
-                "structure."
-            )
-
-        self._structure = get_structure_from_prev_run(vasprun, outcar)
-
-        # multiply the reciprocal density if needed
-        if self.small_gap_multiply:
-            gap = vasprun.eigenvalue_band_properties[0]
-            if gap <= self.small_gap_multiply[0]:
-                self.reciprocal_density = (
-                        self.reciprocal_density * self.small_gap_multiply[1]
-                )
-
-        return self
-
-    @classmethod
-    def from_prev_calc(cls, prev_calc_dir, **kwargs):
-        """
-        Generate a set of Vasp input files for static calculations from a
-        directory of previous Vasp run.
-        Args:
-            prev_calc_dir (str): Directory containing the outputs(
-                vasprun.xml and OUTCAR) of previous vasp run.
-            **kwargs: All kwargs supported by MPStaticSet, other than prev_incar
-                and prev_structure and prev_kpoints which are determined from
-                the prev_calc_dir.
-        """
-        input_set = cls(_dummy_structure, **kwargs)
-        return input_set.override_from_prev_calc(prev_calc_dir=prev_calc_dir)
-    
-    
-def get_vasprun_outcar(path, parse_dos=True, parse_eigen=True):
-    """
-    :param path: Path to get the vasprun.xml and OUTCAR.
-    :param parse_dos: Whether to parse dos. Defaults to True.
-    :param parse_eigen: Whether to parse eigenvalue. Defaults to True.
-    :return:
-    """
-    path = Path(path)
-    vruns = list(glob.glob(str(path / "vasprun.xml*")))
-    outcars = list(glob.glob(str(path / "OUTCAR*")))
-
-    if len(vruns) == 0 or len(outcars) == 0:
-        raise ValueError(
-            "Unable to get vasprun.xml/OUTCAR from prev calculation in %s" % path
-        )
-    vsfile_fullpath = str(path / "vasprun.xml")
-    outcarfile_fullpath = str(path / "OUTCAR")
-    vsfile = vsfile_fullpath if vsfile_fullpath in vruns else sorted(vruns)[-1]
-    outcarfile = (
-        outcarfile_fullpath if outcarfile_fullpath in outcars else sorted(outcars)[-1]
-    )
-    return (
-        Vasprun(vsfile, parse_dos=parse_dos, parse_eigen=parse_eigen),
-        Outcar(outcarfile),
-    )
-
-def get_structure_from_prev_run(vasprun, outcar=None):
-    """
-    Process structure from previous run.
-    Args:
-        vasprun (Vasprun): Vasprun that contains the final structure
-            from previous run.
-        outcar (Outcar): Outcar that contains the magnetization info from
-            previous run.
-    Returns:
-        Returns the magmom-decorated structure that can be passed to get
-        Vasp input files, e.g. get_kpoints.
-    """
-    structure = vasprun.final_structure
-
-    site_properties = {}
-    # magmom
-    if vasprun.is_spin:
-        if outcar and outcar.magnetization:
-            site_properties.update({"magmom": [i["tot"] for i in outcar.magnetization]})
+        # self.kwargs.get("user_incar_settings", {
+        updates = {}
+        # select the KSPACING and smearing parameters based on the bandgap
+        if self.bandgap == 0:
+            updates["KSPACING"] = 0.22
+            updates["SIGMA"] = 0.2
+            updates["ISMEAR"] = 2
         else:
-            site_properties.update({"magmom": vasprun.parameters["MAGMOM"]})
-    # ldau
-    if vasprun.parameters.get("LDAU", False):
-        for k in ("LDAUU", "LDAUJ", "LDAUL"):
-            vals = vasprun.incar[k]
-            m = {}
-            l_val = []
-            s = 0
-            for site in structure:
-                if site.specie.symbol not in m:
-                    m[site.specie.symbol] = vals[s]
-                    s += 1
-                l_val.append(m[site.specie.symbol])
-            if len(l_val) == len(structure):
-                site_properties.update({k.lower(): l_val})
-            else:
-                raise ValueError(
-                    "length of list {} not the same as" "structure".format(l_val)
-                )
+            rmin = 25.22 - 1.87 * bandgap  # Eq. 25
+            kspacing = 2 * np.pi * 1.0265 / (rmin - 1.0183)  # Eq. 29
+            # cap the KSPACING at a max of 0.44, per internal benchmarking
+            if kspacing > 0.44:
+                kspacing = 0.44
+            updates["KSPACING"] = kspacing
+            updates["ISMEAR"] = -5
+            updates["SIGMA"] = 0.05
 
-    return structure.copy(site_properties=site_properties)
+        # Don't overwrite things the user has supplied
+        if kwargs.get("user_incar_settings", {}).get("KSPACING"):
+            del updates["KSPACING"]
 
-_dummy_structure = Structure(
-    [1, 0, 0, 0, 1, 0, 0, 0, 1],
-    ["I"],
-    [[0, 0, 0]],
-    site_properties={"magmom": [[0, 0, 1]]},
-)
+        if kwargs.get("user_incar_settings", {}).get("ISMEAR"):
+            del updates["ISMEAR"]
+
+        if kwargs.get("user_incar_settings", {}).get("SIGMA"):
+            del updates["SIGMA"]
+        
+        self._config_dict["INCAR"].update(updates)
+
 def wf_bandstructure2D(structure, c=None):
 
     c = c or {}
     vasp_cmd = c.get("VASP_CMD", VASP_CMD)
     db_file = c.get("DB_FILE", DB_FILE)
-    mpr2d = MPRelaxSet2D(structure, force_gamma=True)
-    mps2d = MPStaticSet2D(structure)
+    vdw_kernel = c.get("VDW_KERNEL_DIR", VDW_KERNEL_DIR)
+
+    mpr2d = MPScanRelaxSet2D(structure, force_gamma=True, potcar_functional='PBE')
     '''check bandstructure.yaml'''
-    wf = get_wf(structure, "bandstructure.yaml", vis=MPRelaxSet2D(structure, force_gamma=True), \
-                params=[{'vasp_input_set': mpr2d}], common_params={"vasp_cmd": vasp_cmd, "db_file": db_file})
+    wf = get_wf(structure, "bandstructure.yaml", vis=MPScanRelaxSet2D(structure, force_gamma=True, potcar_functional='PBE'), \
+                params=[{'vasp_input_set': mpr2d},{},{},{}], common_params={"vasp_cmd": vasp_cmd, "db_file": db_file,}) #"vdw_kernel_dir": vdw_kernel})
 
     wf = add_common_powerups(wf, c)
 

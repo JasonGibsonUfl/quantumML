@@ -125,7 +125,7 @@ class MWRester(object):
         Parameters:
             index (int): index of entry to write files for
         '''
-        urlp = 'http://2dmaterialsweb.org/'+ self.results['results'][index]['path'][22:] + '/POSCAR'
+        urlp = 'http://2dmaterialsweb.org/'+ self.results[index]['path'][22:] + '/POSCAR'
         file = urllib.request.urlopen(urlp)
         with open('POSCAR','a') as poscar:
             for line in file:
