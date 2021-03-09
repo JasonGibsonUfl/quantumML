@@ -3,8 +3,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="quantumML", # Replace with your own username
-    version="0.0.19",
+    name="quantumML",
+    version="0.0.36",
     author="Jason Gibson",
     author_email="jasongibson@ufl.edu",
     description="A small example package",

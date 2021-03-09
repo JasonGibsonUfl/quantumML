@@ -1,6 +1,7 @@
 README.md
 setup.py
 quantumML/__init__.py
+quantumML/fireworks.py
 quantumML/machine_learning.py
 quantumML/rest.py
 quantumML/workflows.py

@@ -10,9 +10,9 @@ import numpy as np
 def prep_ml_formation_energy(calculation, fileroot='.'):
     os.mkdir('formation_energy')
     os.chdir('formation_energy')
-    urlo = ('http://2d' + calculation['path'][9:21] + '.org/' + calculation['path'][22:] + '/OSZICAR')
+    urlo = ('http://' + calculation['path'][9:21] + '.org/' + calculation['path'][22:] + '/OSZICAR')
     fileo = urllib.request.urlopen(urlo)
-    urlx = ('http://2d' + calculation['path'][9:21] + '.org/' + calculation['path'][22:] + '/XDATCAR')
+    urlx = ('http://' + calculation['path'][9:21] + '.org/' + calculation['path'][22:] + '/XDATCAR')
     filex = urllib.request.urlopen(urlx)
     with open('OsZICAR', 'a') as oszicar:
         for line in fileo:
@@ -64,7 +64,7 @@ def prep_ml_formation_energy(calculation, fileroot='.'):
 @staticmethod
 def get_soap(calculation, rcut=7, nmax=6, lmax=8, fmt='MW'):
     if fmt == 'MW':
-        urlp = 'http://2dmaterialsweb.org/' + calculation['path'][22:] + '/POSCAR'
+        urlp = 'http://materialsweb.org/' + calculation['path'][22:] + '/POSCAR'
         file = urllib.request.urlopen(urlp)
         file = file.read().decode("utf-8")
         file = io.StringIO(file)
