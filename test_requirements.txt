@@ -22,7 +22,7 @@ monty==3.0.4
 mpmath==1.1.0
 mwinterface==0.0.1
 networkx==2.4
-numpy==1.19.1
+numpy==1.22.0
 packaging==20.4
 palettable==3.3.0
 pandas==1.1.0
